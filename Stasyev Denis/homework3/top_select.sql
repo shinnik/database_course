@@ -2,9 +2,9 @@
 
 USE `technotrack_default`;
 
-SELECT u.`login`, p.`sum`
-FROM `users` AS u 
-INNER JOIN (SELECT `user_id`, SUM(`payment_sum`) AS `sum`
+SELECT u.`login`, p.sum
+FROM `users` AS u
+INNER JOIN (SELECT `user_id`, SUM(`payment_sum`) AS sum
     FROM `payments`
     GROUP BY `user_id`
     ORDER BY sum DESC) AS p
