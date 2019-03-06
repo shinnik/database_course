@@ -18,21 +18,16 @@ SELECT login FROM users AS u JOIN(
 
 2) Среднее количество сессий у пользователей
 
-SELECT (SELECT sum(count) 
-    FROM (SELECT user_id, count(*) AS count 
-          FROM sessions 
-          GROUP BY user_id
-    ) AS sum_sessions) / 
-    (SELECT count(*) 
-    FROM (SELECT user_id, count(*) AS count 
-          FROM sessions 
-          GROUP BY user_id
-    ) AS count_users) 
-AS average_sessions;
+SELECT avg(COALESCE(count_sessions, 0)) AS average_sessions 
+FROM users u 
+LEFT JOIN (
+        SELECT s.user_id, count(*) AS count_sessions 
+        FROM sessions s  GROUP BY user_id) AS t 
+ON u.user_id=t.user_id;
 
 +------------------+
 | average_sessions |
 +------------------+
-|          67.7547 |
+|          35.9100 |
 +------------------+
 
