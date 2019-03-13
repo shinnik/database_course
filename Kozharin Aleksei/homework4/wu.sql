@@ -1,5 +1,3 @@
-USE hw1;
-
 -- WAU
 WITH RECURSIVE cte AS
 (
@@ -9,7 +7,7 @@ WITH RECURSIVE cte AS
       FROM cte
      WHERE dt + INTERVAL 1 MONTH <= (SELECT MAX(CAST(begin_dttm AS DATE)) FROM sessions)
 )
-SELECT cte.dt, COUNT(DISTINCT sessions.user_id)
+SELECT cte.dt, COUNT(DISTINCT sessions.user_id) as wu
   FROM sessions RIGHT JOIN cte ON MONTH(CAST(sessions.begin_dttm AS DATE)) = MONTH(cte.dt)
  GROUP BY cte.dt
  ORDER BY cte.dt;
