@@ -1,0 +1,1 @@
+CREATE DATABASE if NOT EXISTS track_mail_test
