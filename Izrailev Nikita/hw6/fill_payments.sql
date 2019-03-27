@@ -7,7 +7,7 @@ CREATE PROCEDURE fill_payments(IN num_rows INT)
         START TRANSACTION;
         WHILE i <= num_rows DO
             INSERT INTO Payment (owner_id, payment_dttm, payment_sum)
-            VALUES ((SELECT FLOOR(RAND() * 150) FROM Owner),
+            VALUES ((1 + FLOOR(RAND() * 149)),
                     FROM_UNIXTIME(UNIX_TIMESTAMP('2019-03-25 15:11:11') + FLOOR(0 + (RAND() * 25200))),
                     FLOOR(RAND() * 10000));
             SET i = i + 1;

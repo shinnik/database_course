@@ -8,7 +8,7 @@ CREATE PROCEDURE fill_rooster(IN num_rows INT)
         START TRANSACTION;
         WHILE i <= num_rows DO
             INSERT INTO Rooster (owner_id, name, breed)
-            VALUES (FLOOR(RAND() * 150),
+            VALUES (1 + FLOOR(RAND() * 149),
                     CONCAT('name', i),
                     CONCAT('breed', CONVERT(FLOOR(RAND() * 10), CHAR)));
             SET i = i + 1;

@@ -8,7 +8,7 @@ CREATE PROCEDURE fill_session(IN num_rows INT)
         START TRANSACTION;
         WHILE i <= num_rows DO
             INSERT INTO Session (owner_id, begin_dttm, end_dttm)
-            VALUES (FLOOR(RAND() * 149),
+            VALUES (1 + FLOOR(RAND() * 149),
                     FROM_UNIXTIME(UNIX_TIMESTAMP('2019-03-25 15:11:11') + FLOOR(0 + (RAND() * 10800))),
                     FROM_UNIXTIME(UNIX_TIMESTAMP('2019-03-25 18:11:11') + FLOOR(0 + (RAND() * 14400))));
             SET i = i + 1;
