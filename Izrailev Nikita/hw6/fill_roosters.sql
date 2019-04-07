@@ -1,4 +1,4 @@
-USE rooster_fights;
+USE mydb;
 
 DELIMITER //
 CREATE PROCEDURE fill_rooster(IN num_rows INT)

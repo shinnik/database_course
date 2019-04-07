@@ -1,4 +1,4 @@
-USE rooster_fights;
+USE mydb;
 
 DELIMITER //
 CREATE PROCEDURE fill_owner(IN num_rows INT)

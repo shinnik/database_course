@@ -1,3 +1,5 @@
+USE mydb;
+
 DELIMITER //
 
 CREATE PROCEDURE fill_payments(IN num_rows INT)

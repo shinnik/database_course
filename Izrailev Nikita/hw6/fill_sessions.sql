@@ -1,4 +1,4 @@
-USE rooster_fights;
+USE mydb;
 
 DELIMITER //
 CREATE PROCEDURE fill_session(IN num_rows INT)
@@ -9,13 +9,14 @@ CREATE PROCEDURE fill_session(IN num_rows INT)
         WHILE i <= num_rows DO
             INSERT INTO Session (owner_id, begin_dttm, end_dttm)
             VALUES (1 + FLOOR(RAND() * 149),
-                    FROM_UNIXTIME(UNIX_TIMESTAMP('2019-03-25 15:11:11') + FLOOR(0 + (RAND() * 10800))),
-                    FROM_UNIXTIME(UNIX_TIMESTAMP('2019-03-25 18:11:11') + FLOOR(0 + (RAND() * 14400))));
+                    NOW() - INTERVAL 4 DAY - INTERVAL FLOOR(RAND() * 10) DAY,
+                    NOW() - INTERVAL FLOOR(RAND() * 4) DAY);
             SET i = i + 1;
         END WHILE;
         COMMIT;
     END//
 DELIMITER ;
 
-CALL fill_session(400);
-# SELECT FROM_UNIXTIME(1553520288);
+# CALL fill_session(400);
+# SELECT FROM_UNIXTIME(1554762832);
+# DELETE FROM Payment;
